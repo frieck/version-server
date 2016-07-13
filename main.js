@@ -26,7 +26,7 @@ app.use('/releases/win32', serveIndex(path.join(__dirname, 'data/releases/win32'
     icons: true
 }));
 
-app.get('/updates/darwin/latest', (req, res) => {
+app.get('/updates/latest/darwin', (req, res) => {
     const platform = "darwin";
 
     if (!platform || platform === ':os') {
@@ -37,7 +37,7 @@ app.get('/updates/darwin/latest', (req, res) => {
     if (latest.status != "error") {
         const clientVersion = req.query.v;
 
-        if (clientVersion === latest) {
+        if (clientVersion === latest.version) {
             res.status(204).end();
         } else {
             res.json({
